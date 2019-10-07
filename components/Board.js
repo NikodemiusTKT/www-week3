@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Row from './Row';
+import Loadbar from './Loadbar'
 import { css } from "emotion";
 
 import './Board.css'
@@ -18,7 +19,10 @@ const boardStyle = css({
 const Board = ({
   rows,
   onClick,
+  timerValue,
 }) => (
+  <div>
+  <Loadbar value={timerValue}></Loadbar>
     <table id="board" cellSpacing="0" cellPadding="0" align="center" >
     <tbody>
       {rows.map((row, index) => (
@@ -31,6 +35,7 @@ const Board = ({
       ))}
       </tbody>
       </table>
+      </div>
   );
 
 export default Board;

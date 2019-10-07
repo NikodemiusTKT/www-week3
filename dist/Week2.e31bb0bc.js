@@ -51599,7 +51599,88 @@ exports.default = _default2;
   var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
   leaveModule && leaveModule(module);
 })();
-},{"react":"node_modules/react/index.js","emotion":"node_modules/emotion/dist/emotion.esm.js","./Square":"components/Square.js"}],"../../../../../.node_modules/lib/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","emotion":"node_modules/emotion/dist/emotion.esm.js","./Square":"components/Square.js"}],"components/Loadbar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _emotion = require("emotion");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+(function () {
+  var enterModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.enterModule : undefined;
+  enterModule && enterModule(module);
+})();
+
+var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
+  return a;
+};
+
+var loadbarBgStyle = (0, _emotion.css)({
+  color: '#000 !important',
+  backgroundColor: '#f1f1f1 !important',
+  borderRadius: '4px',
+  width: '25%',
+  margin: '10px 0 20px 0'
+});
+var loadbarStyle = (0, _emotion.css)({
+  color: "#fff",
+  backgroundColor: "#2196F3 !important",
+  borderRadius: '4px',
+  fontWeight: 'bold'
+});
+
+var Loadbar = function Loadbar(_ref) {
+  var value = _ref.value;
+  return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Changing turn in..."), _react.default.createElement("div", {
+    style: {
+      display: 'flex',
+      alignContent: 'center',
+      justifyContent: 'center'
+    }
+  }, _react.default.createElement("div", {
+    className: loadbarBgStyle
+  }, _react.default.createElement("div", {
+    className: loadbarStyle,
+    style: {
+      width: value + '%'
+    }
+  }, value / 10, "s"))));
+};
+
+var _default = Loadbar;
+var _default2 = _default;
+exports.default = _default2;
+;
+
+(function () {
+  var reactHotLoader = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default : undefined;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(loadbarBgStyle, "loadbarBgStyle", "/home/tkt/Dropbox/Koulu/Lukuvuosi_19-20/WWW/Week2/components/Loadbar.js");
+  reactHotLoader.register(loadbarStyle, "loadbarStyle", "/home/tkt/Dropbox/Koulu/Lukuvuosi_19-20/WWW/Week2/components/Loadbar.js");
+  reactHotLoader.register(Loadbar, "Loadbar", "/home/tkt/Dropbox/Koulu/Lukuvuosi_19-20/WWW/Week2/components/Loadbar.js");
+  reactHotLoader.register(_default, "default", "/home/tkt/Dropbox/Koulu/Lukuvuosi_19-20/WWW/Week2/components/Loadbar.js");
+})();
+
+;
+
+(function () {
+  var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
+  leaveModule && leaveModule(module);
+})();
+},{"react":"node_modules/react/index.js","emotion":"node_modules/emotion/dist/emotion.esm.js"}],"../../../../../.node_modules/lib/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -51687,6 +51768,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Row = _interopRequireDefault(require("./Row"));
 
+var _Loadbar = _interopRequireDefault(require("./Loadbar"));
+
 var _emotion = require("emotion");
 
 require("./Board.css");
@@ -51720,8 +51803,11 @@ var boardStyle = (0, _emotion.css)({
 
 var Board = function Board(_ref) {
   var rows = _ref.rows,
-      onClick = _ref.onClick;
-  return _react.default.createElement("table", {
+      onClick = _ref.onClick,
+      timerValue = _ref.timerValue;
+  return _react.default.createElement("div", null, _react.default.createElement(_Loadbar.default, {
+    value: timerValue
+  }), _react.default.createElement("table", {
     id: "board",
     cellSpacing: "0",
     cellPadding: "0",
@@ -51733,7 +51819,7 @@ var Board = function Board(_ref) {
       squares: row,
       onClick: onClick
     });
-  })));
+  }))));
 };
 
 var _default = Board;
@@ -51759,7 +51845,7 @@ exports.default = _default2;
   var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
   leaveModule && leaveModule(module);
 })();
-},{"react":"node_modules/react/index.js","./Row":"components/Row.js","emotion":"node_modules/emotion/dist/emotion.esm.js","./Board.css":"components/Board.css"}],"App.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Row":"components/Row.js","./Loadbar":"components/Loadbar.js","emotion":"node_modules/emotion/dist/emotion.esm.js","./Board.css":"components/Board.css"}],"App.css":[function(require,module,exports) {
 var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.default.signature : function (a) {
   return a;
 };
@@ -51846,7 +51932,9 @@ var START_STATE = {
   gameOver: false,
   winLimit: 5,
   boardSize: 5,
-  options: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14]
+  options: [3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14],
+  timerValue: 0,
+  timer: null
 }; // Calculate differences between the current item and the last item
 
 var diffCols = function diffCols(_ref) {
@@ -52025,6 +52113,34 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
 
+    _defineProperty(_assertThisInitialized(_this), "progressionTimer", function () {
+      console.log(_this.state.timerValue);
+
+      if (_this.state.timerValue == 100) {
+        var nextPlayer = _this.state.currentPlayer === 'x' ? 'o' : 'x';
+        var newTimer = clearInterval(_this.state.timer);
+
+        _this.setState({
+          currentPlayer: nextPlayer,
+          timerValue: 0,
+          timer: newTimer
+        });
+      } else {
+        _this.setState({
+          timerValue: _this.state.timerValue + 10
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "turnChangeTimer", function () {
+      var startTimer = setInterval(_this.progressionTimer, 1000);
+
+      _this.setState({
+        timerValue: 0,
+        timer: startTimer
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "handleClick", function (_ref6) {
       var rowIndex = _ref6.rowIndex,
           colIndex = _ref6.colIndex;
@@ -52047,6 +52163,8 @@ function (_Component) {
           winString: winLimit
         });
 
+        _this.turnChangeTimer();
+
         _this.setState({
           currentPlayer: nextPlayer,
           grid: cloneGrid,
@@ -52068,13 +52186,16 @@ function (_Component) {
         winLimit: winLimit,
         boardSize: boardSize,
         currentPlayer: 'x',
-        gameOver: false
+        gameOver: false,
+        timerValue: 0,
+        timer: clearInterval(_this.state.timer)
       });
     });
 
     _this.state = (0, _lodash.cloneDeep)(START_STATE);
     _this.changeGridSize = _this.changeGridSize.bind(_assertThisInitialized(_this));
     _this.resetGame = _this.resetGame.bind(_assertThisInitialized(_this));
+    _this.progressionTimer = _this.progressionTimer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -52088,16 +52209,20 @@ function (_Component) {
         boardSize: value,
         winLimit: value,
         gameOver: false,
-        currentPlayer: 'x'
+        currentPlayer: 'x',
+        timerValue: 0,
+        timer: clearInterval(this.state.timer)
       });
-    }
+    } // Function for changing player and updating progres bar value after 10 seconds
+
   }, {
     key: "render",
     value: function render() {
       var grid = this.state.grid;
       return _react.default.createElement("div", null, _react.default.createElement("h1", null, "React.js Tic-Tac-Toe"), _react.default.createElement(_Board.default, {
         onClick: this.handleClick,
-        rows: grid
+        rows: grid,
+        timerValue: this.state.timerValue
       }), _react.default.createElement("button", {
         style: {
           marginTop: "10px"
@@ -52208,7 +52333,7 @@ _reactDom.default.render(_react.default.createElement(_App.default, null), mount
   var leaveModule = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoaderGlobal.leaveModule : undefined;
   leaveModule && leaveModule(module);
 })();
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"App.js"}],"../../../../../.node_modules/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"App.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -52236,7 +52361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45571" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33647" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -52411,5 +52536,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../.node_modules/lib/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/Week2.e31bb0bc.js.map
