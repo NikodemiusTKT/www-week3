@@ -22,6 +22,8 @@ const START_STATE = {
   winLimit: 5,
   boardSize: 5,
   options: [3,4,5,6,7,8,9,10,12,13,14],
+  timerValue: 0,
+  timer: null
 }
 
 
@@ -121,6 +123,7 @@ class App extends Component {
     this.state = cloneDeep(START_STATE);
     this.changeGridSize = this.changeGridSize.bind(this)
     this.resetGame = this.resetGame.bind(this)
+    this.progressionTimer = this.progressionTimer.bind(this)
   }
   changeGridSize (event) {
     const value = parseInt(event.target.value)
@@ -130,8 +133,31 @@ class App extends Component {
       boardSize: value,
       winLimit: value,
       gameOver: false,
-      currentPlayer: 'x'
+      currentPlayer: 'x',
+      timerValue: 0,
+      timer: clearInterval(this.state.timer)
     })
+  }
+// Function for changing player and updating progres bar value after 10 seconds
+  progressionTimer = () => {
+    console.log(this.state.timerValue)
+    if (this.state.timerValue == 100) {
+      const nextPlayer = this.state.currentPlayer === 'x' ? 'o' : 'x';
+      var newTimer = clearInterval(this.state.timer);
+      this.setState({
+        currentPlayer: nextPlayer,
+        timerValue: 0,
+        timer: newTimer
+      });
+    } else {
+      this.setState({
+        timerValue: this.state.timerValue + 10,
+      })
+    }
+  }
+  turnChangeTimer = () => {
+    const startTimer = setInterval(this.progressionTimer,1000)
+    this.setState({timerValue: 0, timer: startTimer})
   }
   handleClick = ({rowIndex, colIndex}) => {
     const { currentPlayer, grid, gameOver,winLimit } = this.state
@@ -141,6 +167,7 @@ class App extends Component {
       cloneGrid[rowIndex][colIndex] = currentPlayer;
       const gridItems = mapGridIndexes({grid: cloneGrid, value: currentPlayer})
       const hasWon = checkWin({gridItems, winString: winLimit})
+      this.turnChangeTimer();
       this.setState({
         currentPlayer: nextPlayer,
         grid: cloneGrid,
@@ -159,7 +186,9 @@ class App extends Component {
       winLimit,
       boardSize,
       currentPlayer: 'x',
-      gameOver: false
+      gameOver: false,
+      timerValue: 0,
+      timer: clearInterval(this.state.timer)
     })
   }
   render() {
@@ -169,7 +198,7 @@ class App extends Component {
     return (
       <div>
       <h1>React.js Tic-Tac-Toe</h1>
-        <Board onClick={this.handleClick} rows={grid} />
+        <Board onClick={this.handleClick} rows={grid} timerValue={this.state.timerValue}/>
       <button style={{marginTop:"10px"}} onClick={this.resetGame}>Reset</button>
         <select value={this.state.boardSize} onChange={this.changeGridSize}>
           {this.state.options.map((opt, index) =>
