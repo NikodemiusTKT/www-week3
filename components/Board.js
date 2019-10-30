@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import Row from './Row';
 import Loadbar from './Loadbar'
-import { css } from "emotion";
 
 import './Board.css'
-const boardStyle = css({
-  marginTop: '20px',
-  // border: '1px solid black',
-//  borderCollapse: 'collapse',
-//   textAlign: 'center',
-//   display: 'flex',
-//   alignContent: 'center',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-  // width: '50%'
 
-})
 const Board = ({
   rows,
   onClick,
@@ -23,8 +11,7 @@ const Board = ({
 }) => (
   <div>
   <Loadbar value={timerValue}></Loadbar>
-    <table id="board" cellSpacing="0" cellPadding="0" align="center" >
-    <tbody>
+    <div id="board" class="container valign_wrapper">
       {rows.map((row, index) => (
         <Row
         key={index}
@@ -33,8 +20,7 @@ const Board = ({
         onClick={onClick}
       />
       ))}
-      </tbody>
-      </table>
+      </div>
       </div>
   );
 

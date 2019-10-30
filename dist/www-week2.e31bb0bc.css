@@ -1,0 +1,17 @@
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+#board {
+  /* border-collapse: collapse; */
+  /* border: 1px solid black; */
+  margin: 0 auto;
+}
+ * {
+  text-align: center
+}
+
+/*# sourceMappingURL=/www-week2.e31bb0bc.css.map */

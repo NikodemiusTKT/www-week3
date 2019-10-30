@@ -1,6 +1,5 @@
  td {
   border: 1px solid black;
-  display: table-cell;
   vertical-align: center;
   height: 60px;
   width: 60px;
@@ -14,4 +13,10 @@
 }
  .player2 {
 background-Color: rgb(250,128,114)
+}
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }

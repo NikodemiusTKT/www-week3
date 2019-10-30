@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import {css } from 'emotion'
 import Square from './Square';
-
-const Row = ({squares,rowIndex,onClick,currentPlayer}) => {
-  const rowStyle = css({
-    // display: 'flex',
-    // justifyContent: 'center'
+import './Row.css'
+const Row = ({ squares, rowIndex, onClick, currentPlayer }) => {
+  const rowStyle = {
+    margin: '0 auto',
+    padding: '0 !important',
+    width: '60%',
+    height: '60%'
   }
-  )
+
   return (
-    <tr>
-      {squares.map((square, index) => {
-        return <Square
-          value={square}
-          colIndex={index}
-          rowIndex={rowIndex}
-          key={index}
-          size={60}
-          onClick={onClick}
-        />
-      })}
-    </tr>
+    <div class="row" style={rowStyle}>
+        {squares.map((square, index) => {
+          return <Square
+            value={square}
+            colIndex={index}
+            rowIndex={rowIndex}
+            key={index}
+            size={60}
+            onClick={onClick}
+          />
+        })}
+        </div>
   )
 }
 
