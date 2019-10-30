@@ -52114,8 +52114,6 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
 
     _defineProperty(_assertThisInitialized(_this), "progressionTimer", function () {
-      console.log(_this.state.timerValue);
-
       if (_this.state.timerValue == 100) {
         var nextPlayer = _this.state.currentPlayer === 'x' ? 'o' : 'x';
         var newTimer = clearInterval(_this.state.timer);
@@ -52133,6 +52131,7 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "turnChangeTimer", function () {
+      clearInterval(_this.state.timer);
       var startTimer = setInterval(_this.progressionTimer, 1000);
 
       _this.setState({
@@ -52361,7 +52360,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33647" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39455" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
