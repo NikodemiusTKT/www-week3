@@ -196,10 +196,10 @@ class App extends Component {
       grid
     } = this.state;
     return (
-      <div>
+      <div class="container">
       <h1>React.js Tic-Tac-Toe</h1>
         <Board onClick={this.handleClick} rows={grid} timerValue={this.state.timerValue}/>
-      <button style={{marginTop:"10px"}} onClick={this.resetGame}>Reset</button>
+      <button class="waves-effect waves-light btn" style={{marginTop:"10px"}} onClick={this.resetGame}>Reset</button>
         <select value={this.state.boardSize} onChange={this.changeGridSize}>
           {this.state.options.map((opt, index) =>
             <option value={opt} key={index}>{opt}</option>
