@@ -196,17 +196,25 @@ class App extends Component {
       grid
     } = this.state;
     return (
-      <div class="container">
-      <h1>React.js Tic-Tac-Toe</h1>
-        <Board onClick={this.handleClick} rows={grid} timerValue={this.state.timerValue}/>
-      <button class="waves-effect waves-light btn" style={{marginTop:"10px"}} onClick={this.resetGame}>Reset</button>
-        <select value={this.state.boardSize} onChange={this.changeGridSize}>
+      <div class="container z-depth-3 game-container">
+        <h2 style={{marginTop: '0', marginBottom: '0'}} >Tic-Tac-Toe</h2>
+        <Board onClick={this.handleClick} rows={grid} timerValue={this.state.timerValue} currentPlayer={this.state.currentPlayer} />
+        <div class="row">
+          <button
+            class="waves-effect waves-light btn-large"
+            onClick={this.resetGame}
+            style={{marginTop: '10px', marginBottom: '10px'}}
+          >
+            Reset
+          </button>
+        </div>
+        {/* <select value={this.state.boardSize} onChange={this.changeGridSize}>
           {this.state.options.map((opt, index) =>
             <option value={opt} key={index}>{opt}</option>
           )}
-        </select>
+        </select> */}
       </div>
-    )
+    );
   }
 }
 export default App;

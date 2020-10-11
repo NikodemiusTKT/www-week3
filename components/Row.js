@@ -4,14 +4,10 @@ import Square from './Square';
 import './Row.css'
 const Row = ({ squares, rowIndex, onClick, currentPlayer }) => {
   const rowStyle = {
-    margin: '0 auto',
-    padding: '0 !important',
-    width: '60%',
-    height: '60%'
   }
 
   return (
-    <div class="row" style={rowStyle}>
+    <div class='row valign-wrapper' style={rowStyle}>
         {squares.map((square, index) => {
           return <Square
             value={square}

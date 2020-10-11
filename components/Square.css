@@ -1,12 +1,3 @@
- td {
-  border: 1px solid black;
-  vertical-align: center;
-  height: 60px;
-  width: 60px;
-  font-size: 30px;
-  font-family: Helvetica
-}
-
 
 .player1{
     background-Color: rgb(124,252,0)
@@ -14,9 +5,17 @@
  .player2 {
 background-Color: rgb(250,128,114)
 }
-.flexbox {
+.square {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid black;
+  height: 60px;
+  width: 60px;
+  font-size: 30px;
+  font-family: Helvetica,
+}
+.square:hover {
+  background-color: lightgray;
 }

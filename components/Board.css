@@ -1,5 +1,4 @@
-#board {
-  /* border-collapse: collapse; */
-  /* border: 1px solid black; */
-  margin: 0 auto;
+.board-container {
+  display: grid;
+  margin-top: 20px;
 }
