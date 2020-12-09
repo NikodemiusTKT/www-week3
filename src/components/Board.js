@@ -14,7 +14,7 @@ const Board = ({
   <div>
     <Status currentPlayer={currentPlayer}></Status>
   <Loadbar value={timerValue}></Loadbar>
-    <div id="board" class="board-container">
+    <div id="board" className="board-container">
       {rows.map((row, index) => (
         <Row
         key={index}

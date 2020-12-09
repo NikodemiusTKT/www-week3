@@ -22,7 +22,7 @@ const Square = ({
   else if (value === 'o')
     style.backgroundColor = 'rgb(250,128,114)'
   return (
-    <div class="col align-center square" style={style} onClick={() => onClick(indexes)} >
+    <div className="col align-center square" style={style} onClick={() => onClick(indexes)} >
     {value}
     </div>
   );

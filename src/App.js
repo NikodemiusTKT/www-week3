@@ -196,12 +196,12 @@ class App extends Component {
       grid
     } = this.state;
     return (
-      <div class="container z-depth-3 game-container">
+      <div className="container z-depth-3 game-container">
         <h2 style={{marginTop: '0', marginBottom: '0'}} >Tic-Tac-Toe</h2>
         <Board onClick={this.handleClick} rows={grid} timerValue={this.state.timerValue} currentPlayer={this.state.currentPlayer} />
-        <div class="row">
+        <div className="row">
           <button
-            class="waves-effect waves-light btn-large"
+            className="waves-effect waves-light btn-large"
             onClick={this.resetGame}
             style={{marginTop: '10px', marginBottom: '10px'}}
           >

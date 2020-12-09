@@ -7,7 +7,7 @@ const Row = ({ squares, rowIndex, onClick, currentPlayer }) => {
   }
 
   return (
-    <div class='row valign-wrapper' style={rowStyle}>
+    <div className='row valign-wrapper' style={rowStyle}>
         {squares.map((square, index) => {
           return <Square
             value={square}
