@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { css } from "emotion";
 import { cloneDeep } from 'lodash';
-import Board from './components/Board';
-import './App.css'
 import 'materialize-css/dist/css/materialize.min.css';
+import React, { Component } from 'react';
+import './App.css';
+import Board from './components/Board';
+import { make2DArray,mapGridIndexes,checkWin } from './utils';
 
 const ROWS = 5;
 const COLS = 5;
@@ -13,9 +13,6 @@ const ROW_ARR = new Array(ROWS).fill(null)
 const COL_ARR = new Array(COLS).fill(null)
 const GRID = ROW_ARR.map(x => COL_ARR.slice())
 
-  const appStyle = css({
-    textAlign: 'center'
-  })
 const START_STATE = {
   currentPlayer: 'x',
   grid: cloneDeep(GRID),
@@ -25,97 +22,6 @@ const START_STATE = {
   options: [3,4,5,6,7,8,9,10,12,13,14],
   timerValue: 0,
   timer: null
-}
-
-
-// Calculate differences between the current item and the last item
-const diffCols = ({ arr, item }) => {
-  const lastItem = arr[arr.length - 1];
-  return item.colIndex - lastItem.colIndex;
-}
-const diffRows = ({ arr, item }) => {
-  const lastItem = arr[arr.length - 1];
-  return item.rowIndex - lastItem.rowIndex;
-}
-const flattenAndFilterArray = (grid) => {
-  const output = [];
-  grid.forEach(arr => {
-    output.push(...arr);
-  });
-  return output.filter(value => !!value);
-}
-const mapGridIndexes = ({ grid, value }) => {
-  const mappedItems = grid.map((row, rowIndex) => row.map((col, colIndex) => {
-    return col === value && {
-      colIndex,
-      rowIndex
-    }
-  })
-  )
-  return flattenAndFilterArray(mappedItems);
-}
-
-const compareToRest = ({ currentItem, gridItems, winString }) => {
-  const N = [currentItem];
-  const NE = [currentItem];
-  const E = [currentItem];
-  const SE = [currentItem];
-  const S = [currentItem];
-  const SW = [currentItem];
-  const W = [currentItem];
-  const NW = [currentItem];
-
-  const applyDirection = (item) => {
-    if (diffRows({ arr: N, item }) === 1 && diffCols({ arr: N, item }) === 0) {
-      N.push(item);
-    } else if (diffRows({ arr: NE, item }) === 1 && diffCols({ arr: NE, item }) === 1) {
-      NE.push(item);
-    } else if (diffRows({ arr: E, item }) === 0 && diffCols({ arr: E, item }) === 1) {
-      E.push(item);
-    } else if (diffRows({ arr: SE, item }) === -1 && diffCols({ arr: SE, item }) === 1) {
-      SE.push(item);
-    } else if (diffRows({ arr: S, item }) === -1 && diffCols({ arr: S, item }) === 0) {
-      S.push(item);
-    } else if (diffRows({ arr: SW, item }) === -1 && diffCols({ arr: SW, item }) === -1) {
-      SW.push(item);
-    } else if (diffRows({ arr: W, item }) === 0 && diffCols({ arr: W, item }) === -1) {
-      W.push(item);
-    } else if (diffRows({ arr: NW, item }) === 1 && diffCols({ arr: NW, item }) === -1) {
-      NW.push(item);
-    }
-
-    const arrays = [N, NE, E, SE, S, SW, W, NW];
-    const winningArrays = arrays.filter(arr => arr.length >= winString);
-    return winningArrays.length > 0;
-  }
-
-  let hasWon = false;
-  let i = 0;
-
-  while (i < gridItems.length && !hasWon) {
-    hasWon = applyDirection(gridItems[i]);
-    i++;
-  }
-
-  return hasWon;
-}
-
-const checkWin = ({ gridItems, winString }) => {
-  let hasWon = false;
-  let i = 0;
-  while (i < gridItems.length && !hasWon) {
-    hasWon = compareToRest({ currentItem: gridItems[i], gridItems, winString });
-    i++;
-  }
-  return hasWon;
-}
-
-const make2DArray = (size) => {
-  var arr = new Array(size).fill(null);
-  for (var i = 0; i < arr.length; i++) {
-    arr[i] = new Array(size).fill(null).slice();
-  }
-  return arr;
 }
 
 class App extends Component {
