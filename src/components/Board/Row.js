@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {css } from 'emotion'
 import Square from './Square';
 import './Row.css'
 const Row = ({ squares, rowIndex, onClick, currentPlayer }) => {
