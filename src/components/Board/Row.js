@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Square from './Square';
 import './Row.css'
 const Row = ({ squares, rowIndex, onClick, currentPlayer }) => {
-  const rowStyle = {
-  }
-
   return (
-    <div className='row valign-wrapper' style={rowStyle}>
+    <div className='row valign-wrapper' >
         {squares.map((square, index) => {
           return <Square
             value={square}

@@ -97,10 +97,10 @@ class App extends Component {
   };
   resetGame = () => {
     const { boardSize, winLimit } = this.state;
-    var board = make2DArray(boardSize);
+    var newBoard = make2DArray(boardSize);
     this.setState({
       ...START_STATE,
-      grid: board,
+      grid: newBoard,
       winLimit,
       boardSize,
       timer: clearInterval(this.state.timer),

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Row from './Row';
 
 import './Board.css'
 
-const Board = ({ rows, onClick, timerValue, currentPlayer, boardSize,onSelectChange,options }) => {
+const Board = ({ rows, onClick}) => {
   return (
     <div>
       <div id="board" className="board-container">

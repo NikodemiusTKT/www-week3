@@ -16,13 +16,15 @@ const Square = ({
   }
   const indexes = { rowIndex, colIndex };
   const style = {
+    color: 'transparent',
+    textShadow: '0 0 0 #000'
   }
   if (value === 'x')
     style.backgroundColor = 'rgb(124,252,0)'
   else if (value === 'o')
     style.backgroundColor = 'rgb(250,128,114)'
   return (
-    <div className="col align-center square" style={style} onClick={() => onClick(indexes)} >
+    <div disabled="disabled" className="col align-center square" style={style} onClick={() => onClick(indexes)} >
     {value}
     </div>
   );
