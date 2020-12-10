@@ -3,7 +3,8 @@
 }
 
 .game-container {
-  margin-top: 20px;
+  margin: 0 auto;
+  margin-top: 10px;
   border-radius: 40px;
-  width: 50%;
+  padding: 40px;
 }
