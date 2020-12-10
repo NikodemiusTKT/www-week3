@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { cloneDeep } from 'lodash';
 import { make2DArray, mapGridIndexes, checkWin } from './utils';
 
+import 'materialize-css/dist/css/materialize.min.css';
+import './App.css';
 import Board from './components/Board/Board';
 import Button from './components/Button'
 import Selector from './components/Selector'
 import Status from './components/Status'
 import Loadbar from './components/Loadbar'
 
-import 'materialize-css/dist/css/materialize.min.css';
-import './App.css';
 
 const START_STATE = {
   currentPlayer: 'x',
@@ -29,7 +29,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = cloneDeep(START_STATE);
-    this.changeGridSize = this.changeGridSize.bind(this);
     this.resetGame = this.resetGame.bind(this);
     this.progressionTimer = this.progressionTimer.bind(this);
   }

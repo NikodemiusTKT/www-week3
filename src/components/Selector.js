@@ -4,7 +4,7 @@ import M from 'materialize-css'
 const Selector = (props) => {
   useEffect(() => {
     M.AutoInit();
-  },[])
+  },[props.options])
     const {options,boardSize,onSelectChange} = props
     return (
       <div className="row">
@@ -22,4 +22,4 @@ const Selector = (props) => {
     );
   }
 
-export default Selector;
+export default React.memo(Selector);
