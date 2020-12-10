@@ -1,21 +1,15 @@
-import { cloneDeep } from 'lodash';
-import 'materialize-css/dist/css/materialize.min.css';
 import React, { Component } from 'react';
-import './App.css';
+import { cloneDeep } from 'lodash';
+import { make2DArray, mapGridIndexes, checkWin } from './utils';
+
 import Board from './components/Board/Board';
-import { make2DArray,mapGridIndexes,checkWin } from './utils';
 import Button from './components/Button'
 import Selector from './components/Selector'
 import Status from './components/Status'
 import Loadbar from './components/Loadbar'
 
-const ROWS = 5;
-const COLS = 5;
-const MIN_TO_WIN = 5
-
-const ROW_ARR = new Array(ROWS).fill(null)
-const COL_ARR = new Array(COLS).fill(null)
-const GRID = ROW_ARR.map(x => COL_ARR.slice())
+import 'materialize-css/dist/css/materialize.min.css';
+import './App.css';
 
 const START_STATE = {
   currentPlayer: 'x',
@@ -39,8 +33,11 @@ class App extends Component {
     this.resetGame = this.resetGame.bind(this);
     this.progressionTimer = this.progressionTimer.bind(this);
   }
-  changeGridSize(newSize) {
-    const value = parseInt(newSize);
+  componentWillUnmount() {
+    clearInterval(this.state.timer);
+  }
+  changeGridSize(event) {
+    const value = parseInt(event);
     const newGrid = make2DArray(value);
     this.setState((prevState) => {
       clearInterval(prevState.timer);
@@ -108,27 +105,19 @@ class App extends Component {
   };
 
   render() {
-    const { grid } = this.state;
+    const { grid, timerValue, currentPlayer, boardSize, options } = this.state;
     return (
       <div className="z-depth-3 game-container">
-        <h3 style={{ marginTop: '0', marginBottom: '0' }}>Tic-Tac-Toe</h3>
-      <Loadbar value={this.state.timerValue}></Loadbar>
-      <Status currentPlayer={this.state.currentPlayer}></Status>
-        <Board
-          onClick={this.handleClick}
-          rows={grid}
-          timerValue={this.state.timerValue}
-          currentPlayer={this.state.currentPlayer}
-          boardSize={this.state.boardSize}
-          onSelectChange={this.changeGridSize}
-          options={this.state.options}
-        />
-      <Selector
-        boardSize={this.state.boardSize}
-        onSelectChange={this.changeGridSize}
-        options={this.state.options}
-      ></Selector>
-        <Button onClick={this.resetGame}/>
+        <h3>Tic-Tac-Toe</h3>
+        <Loadbar value={timerValue}></Loadbar>
+        <Status currentPlayer={currentPlayer}></Status>
+        <Board onClick={this.handleClick} rows={grid} />
+        <Selector
+          boardSize={boardSize}
+          onSelectChange={(boardSize) => this.changeGridSize(boardSize)}
+          options={options}
+        ></Selector>
+        <Button onClick={this.resetGame} />
       </div>
     );
   }

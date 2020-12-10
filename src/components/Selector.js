@@ -1,24 +1,15 @@
-import React, {Component,useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import M from 'materialize-css'
 
-class Selector extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  componentDidMount() {
+const Selector = (props) => {
+  useEffect(() => {
     M.AutoInit();
-  }
-  handleChange(e) {
-    this.props.onSelectChange(e.target.value);
-  }
-
-  render() {
-    const {options,boardSize} = this.props
+  },[])
+    const {options,boardSize,onSelectChange} = props
     return (
       <div className="row">
         <div className="input-field col s8 offset-s2">
-          <select className="" value={boardSize} onChange={this.handleChange}>
+          <select className="" value={boardSize} onChange={e => onSelectChange(e.target.value)}>
             {options.map((opt,index) => (
               <option value={opt} key={index}>
                 {opt}
@@ -30,6 +21,5 @@ class Selector extends Component {
       </div>
     );
   }
-}
 
 export default Selector;
